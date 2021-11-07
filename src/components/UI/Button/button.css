@@ -1,9 +1,8 @@
 .button {
   font: inherit;
   padding: 0.5rem 1rem;
-  border: 1px solid white;
   border-radius: 8px;
-  background: #c55c05;
+  background: #F24C00;
   color: white;
   cursor: pointer;
   text-decoration: none;
@@ -26,7 +25,7 @@
 .button:hover,
 .button:active {
   background: transparent;
-  border-color: #c55c05;
+  border-color: 1px solid #F24C00;
   letter-spacing: 4px;
   transform: scale(1.1);
 }

@@ -7,8 +7,15 @@
   justify-content: center;
 }
 
+.App h1 {
+  font-weight: 400;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+}
+
 
 body {
-  background-color: black;
-  color: white;
+  background-color: #E7E7E7;
+  color: black;
 }

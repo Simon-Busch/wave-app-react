@@ -3,8 +3,19 @@ import './message.css';
 
 const Message = () => {
   return (
-    <div>
-      message #1
+    <div className="message-container">
+      <div>
+        sender
+      </div>
+      <div>
+        message
+      </div>
+      <div>
+        time
+      </div>
+      <div>
+        won ?
+      </div>
     </div>
   );
 };

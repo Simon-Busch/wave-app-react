@@ -6,6 +6,7 @@ import Button from './components/UI/Button/button';
 const App = () => {
   return (
     <div className="App">
+    <h1>Dare to Wave</h1>
       <MessagInput />
       <Button />
       <Messages />
