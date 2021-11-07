@@ -10,7 +10,6 @@ const App = () => {
       <MessagInput />
       <Button />
       <Messages />
-
     </div>
   );
 }
