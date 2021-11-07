@@ -63,6 +63,18 @@ const App = () => {
 		}
 	};
 
+  const message = async () => {
+    // get basic message from the contract
+  }
+
+  const setMessage = async () => {
+    // set the message to the blockchain
+  }
+
+  const getAllAdresses = async () => {
+    // get all contract addresse from the contract.
+  }
+
 	const wave = async () => {
 		try {
       setIsLoading(true);
@@ -109,8 +121,8 @@ const App = () => {
       {
         isLoading === true ?  
         <Loader
-          type="Goo"
-          color="#00BFFF"
+          type="Circles"
+          color="#F24C00"
           height={100}
           width={100}
           timeout={3000} 
