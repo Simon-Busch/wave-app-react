@@ -1,0 +1,41 @@
+.button {
+  font: inherit;
+  padding: 0.5rem 1rem;
+  border: 1px solid white;
+  border-radius: 8px;
+  background: #c55c05;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: inline-block;
+  box-shadow: 2px 4px 20px rgba(0,0,0,0.2);
+  margin-bottom: 1rem;
+  transition: all .3s ease;
+}
+
+.button:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:hover,
+.button:active {
+  background: transparent;
+  border-color: #c55c05;
+  letter-spacing: 4px;
+  transform: scale(1.1);
+}
+
+.button:disabled,
+.button:hover:disabled,
+.button:active:disabled {
+  background: #ccc;
+  color: #979797;
+  border-color: #ccc;
+  cursor: not-allowed;
+}

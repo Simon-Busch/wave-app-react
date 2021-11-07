@@ -1,0 +1,12 @@
+.form-control {
+  border: none;
+  background-color: rgb(72, 79, 82);
+  padding: 1rem 1.2rem;
+  width: 30vw;
+  height: 100px;
+}
+
+.form-control:focus {
+  outline: none;
+  color: white;
+}
