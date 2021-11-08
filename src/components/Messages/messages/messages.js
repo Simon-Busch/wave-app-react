@@ -8,7 +8,7 @@ const Messages = (props) => {
     <div className="messageBox-container">
       <h3>Courage feed</h3>
       <ul>
-      {props.messagesArray.map((message,index) =>  {return (
+      {props.messagesArray.reverse().map((message,index) =>  {return (
         <li>
           <Message
             key={index}

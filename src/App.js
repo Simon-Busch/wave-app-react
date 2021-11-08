@@ -10,8 +10,9 @@ import abi from './utils/WavePortal.json';
 const App = () => {
 	const [ currentAccount, setCurrentAccount ] = useState('');
 	const [ allWaves, setAllWaves ] = useState([]);
+  const [ message, setMessage] = useState(""); 
 	const [ isLoading, setIsLoading ] = useState(false);
-	const contractAddress = '0xb52f8bef1d7786Ae936910595A158747C88F5FFE';
+	const contractAddress = '0x99B418A078B2431B0E14b37c1C465D7AD1246a4B';
 	const contractABI = abi.abi;
 
 	const checkIfWalletIsConnected = async () => {
@@ -64,11 +65,9 @@ const App = () => {
 		}
 	};
 
-	const getAllWaves = async () => {
-    console.log("getallWaves")
+	const getAllMessages = async () => {
 		try {
 			const { ethereum } = window;
-      console.log("ETH OK IN GET ALL WAVES", ethereum)
 			if (ethereum) {
 				const provider = new ethers.providers.Web3Provider(ethereum);
 				const signer = provider.getSigner();
@@ -94,7 +93,7 @@ const App = () => {
 	};
 
   
-	const wave = async () => {
+	const postMessage = async () => {
     try {
       setIsLoading(true);
 			const { ethereum } = window;
@@ -107,10 +106,7 @@ const App = () => {
 				let count = await wavePortalContract.getTotalWaves();
 				console.log('Retrieved total wave count...', count.toNumber());
 
-				/*
-        * Execute the actual wave from your smart contract
-        */
-        const waveTxn = await wavePortalContract.wave("this is a message")
+        const waveTxn = await wavePortalContract.wave(message)
 				console.log('Mining...', waveTxn.hash);
 
 				await waveTxn.wait();
@@ -129,18 +125,20 @@ const App = () => {
 
 	useEffect(() => {
 		checkIfWalletIsConnected();
-    getAllWaves();
+    getAllMessages();
 	}, []);
+
+  const inputHandler = (event) => {
+    setMessage(event.target.value)
+  }
 
 	return (
 		<div className="App">
 			<h1>Dare to Wave</h1>
 			{!currentAccount && <Button onClick={connectWallet} text={'Connect Wallet'} />}
-			<MessagInput />
-			<Button text={'YES'} onClick={wave} />
-			{isLoading === true ? (
-				<Loader type="Circles" color="#F24C00" height={100} width={100} timeout={3000} />
-			) :  allWaves > [] ? <Messages messagesArray={allWaves} />  : ''
+			<MessagInput changeHandler={inputHandler} />
+			<Button text={'SEND'} onClick={postMessage} />
+			{ allWaves > [] ? <Messages messagesArray={allWaves} />  : ''
 			}
 		</div>
 	);
