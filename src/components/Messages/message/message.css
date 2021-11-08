@@ -1,7 +1,7 @@
 .message-container {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 4fr 1fr 1fr;
+  grid-template-columns: 5fr  1fr;
   min-height: 50px;
   align-items: center;
   background-color: #FC7A1E;
@@ -9,4 +9,26 @@
   border-radius: 4px;
   box-shadow: 0px 4px 8px rgba(255,255,255, .2);
   padding: 1rem 1.2rem;
+}
+
+.message-container-message {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.message-container-info {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.message-small {
+  font-size: 8px;
+  transition: all .3s ease;
+}
+
+.message-small:hover {
+  font-size: 12px;
 }
