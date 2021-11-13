@@ -9,10 +9,10 @@ import abi from './utils/WavePortal.json';
 
 const App = () => {
 	const [ currentAccount, setCurrentAccount ] = useState('');
-	const [ allWaves, setAllWaves ] = useState([]);
+	const [ allTries, setAllTries ] = useState([]);
 	const [ message, setMessage ] = useState('');
 	const [ isLoading, setIsLoading ] = useState(false);
-	const contractAddress = '0xf2d9012e62F13dA75DDF856790ECd2fF5dA2D480';
+	const contractAddress = '0xb233b630E401aCFb4e430dbeb51fF936CbC14f91';
 	const contractABI = abi.abi;
 
 	const checkIfWalletIsConnected = async () => {
@@ -67,23 +67,21 @@ const App = () => {
 
 	const getAllMessages = async () => {
 		const { ethereum } = window;
-
 		try {
 			if (ethereum) {
 				const provider = new ethers.providers.Web3Provider(ethereum);
 				const signer = provider.getSigner();
 				const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
 				const waves = await wavePortalContract.getAllWaves();
-
 				const wavesCleaned = waves.map((wave) => {
+					console.log(wave)
 					return {
 						address: wave.waver,
 						timestamp: new Date(wave.timestamp * 1000),
 						message: wave.message
 					};
 				});
-
-				setAllWaves(wavesCleaned);
+				setAllTries(wavesCleaned);
 			} else {
 				console.log("Ethereum object doesn't exist!");
 			}
@@ -95,14 +93,15 @@ const App = () => {
 	useEffect(() => {
 		let wavePortalContract;
 
-		const onNewWave = (from, timestamp, message) => {
-			console.log('NewWave', from, timestamp, message);
-			setAllWaves((prevState) => [
+		const onNewWave = (from, timestamp, message, won) => {
+			console.log('NewWave', from, timestamp, message, won);
+			setAllTries((prevState) => [
 				...prevState,
 				{
 					address: from,
 					timestamp: new Date(timestamp * 1000),
-					message: message
+					message: message,
+					won: won
 				}
 			]);
 		};
@@ -122,7 +121,7 @@ const App = () => {
 		};
 	}, []);
 
-	const postMessage = async () => {
+	const submitNumberHandler = async () => {
 		try {
 			setIsLoading(true);
 			const { ethereum } = window;
@@ -163,11 +162,11 @@ const App = () => {
 
 	return (
 		<div className="App">
-			<h1>Dare to Wave</h1>
+			<h1>Dare to Wave </h1>
 			{!currentAccount && <Button onClick={connectWallet} text={'Connect Wallet'} />}
 			<MessagInput changeHandler={inputHandler} />
-			<Button text={'SEND'} onClick={postMessage} />
-			{allWaves > [] ? <Messages messagesArray={allWaves} /> : ''}
+			<Button text={'SEND'} onClick={submitNumberHandler} />
+			{allTries > [] ? <Messages messagesArray={allTries} /> : ''}
 		</div>
 	);
 };

@@ -11,8 +11,6 @@ const MessagInput = (props) => {
 				className="form-control"
 			>
       </input>
-      <p>By waving at me you have a chance to win some ETH ... Or I can win some ETH</p>
-      <p>Will you dare ?</p>
     </div>
   );
 };
